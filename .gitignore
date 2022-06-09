@@ -1,0 +1,66 @@
+*.swp
+*/**/*un~
+*un~
+.idea/
+.history/
+.vscode/
+/coverage
+/tmp
+
+# NODE
+
+## dependencies
+*/**/node_modules
+/.pnp
+.pnp.js
+
+## testing
+/coverage
+
+## production
+#/build
+
+## misc
+.DS_Store
+*/**/.DS_Store
+.npm/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SOLIDITY
+*/**/lib
+*/**/*.abi
+packages/web3/dist/
+migrations/
+
+# VISUAL STUDIO
+.vs/
+*/**/.vs
+*/**/obj/
+*/**/bin/
+*/**/*.log
+*/**/*.tmp
+*/**/*.user
+*/**/*.db
+*.log
+*.nupkg
+*/**/*.nupkg
+**/docker.sh
+**/docker.ps1
+*/**/Logs
+*/**/nupkg
+*/**/.env/
+
+**/publish*.ps1
+**/install*.ps1
+**/publish*.sh
+**/install*.sh
+
+*/**/testnet/

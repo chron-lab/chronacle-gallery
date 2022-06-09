@@ -1,0 +1,9 @@
+version: "3.4"
+ 
+services:
+
+     c8c-gallery-local-api:
+         image: chronacle.azurecr.io/c8c-gallery-local-api:latest
+         build:
+             context: ../../dotnet
+             dockerfile: C8c.Gallery.LocalApi.Service/Dockerfile.sandbox

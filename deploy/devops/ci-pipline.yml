@@ -1,0 +1,54 @@
+trigger:
+    - Development
+
+pool:
+    vmImage: ubuntu-latest
+
+variables:
+    - name: buildPlatform
+      value: "Any CPU"
+    - name: buildConfiguration
+      value: "Release"
+    - name: sourceRegistry
+      value: "chronacle.azurecr.io"
+    - name: targetRegistry
+      value: "chronacle.azurecr.io"
+
+steps:
+    - task: Docker@2
+      displayName: Login to source registry
+      inputs:
+          containerRegistry: $(sourceRegistry)
+          command: "login"
+          addPipelineData: false
+
+    - task: Docker@2
+      displayName: Build Image
+      inputs:
+          containerRegistry: $(targetRegistry)
+          repository: c8c-gallery-local-api
+          command: "build"
+          Dockerfile: "$(Build.SourcesDirectory)/dotnet/C8c.Gallery.LocalApi.Service/Dockerfile"
+          buildContext: "$(Build.SourcesDirectory)/dotnet"
+          tags: |
+              $(Build.BuildId)
+              latest
+          addPipelineData: false
+
+    - task: Docker@2
+      displayName: Login to target registry
+      inputs:
+          containerRegistry: $(targetRegistry)
+          command: "login"
+          addPipelineData: false
+
+    - task: Docker@2
+      displayName: Push Gallery Local Api
+      inputs:
+          containerRegistry: $(targetRegistry)
+          repository: c8c-gallery-local-api
+          command: "push"
+          tags: |
+              $(Build.BuildId)
+              latest
+          addPipelineData: false

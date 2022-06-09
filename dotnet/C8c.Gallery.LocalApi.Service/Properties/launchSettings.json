@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "C8c.Gallery.LocalApi.Service": {
+      "commandName": "Project",
+      //"launchBrowser": true,
+      "dotnetRunMessages": "true",
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:12038",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "sandbox"
+      }
+    }
+  }
+}
