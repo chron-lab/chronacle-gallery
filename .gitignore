@@ -59,7 +59,6 @@ migrations/
 */**/.env/
 
 **/publish*.ps1
-**/install*.ps1
 **/publish*.sh
 **/install*.sh
 

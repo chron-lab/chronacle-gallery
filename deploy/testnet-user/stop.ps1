@@ -1,0 +1,1 @@
+docker-compose -p c8c-gallery-testnet down
