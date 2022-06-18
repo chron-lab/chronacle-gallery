@@ -1,5 +1,7 @@
 using C8c.Gallery.LocalApi.Abstractions;
 using C8c.Gallery.LocalApi.Service.Controllers.MultiChain;
+using C8c.Gallery.LocalApi.Service.Handlers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,6 +73,10 @@ namespace C8c.Gallery.LocalApi.Service
 						};
 				});
 
+			services .AddAuthentication()
+			   .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication",
+			   options => { });
+
 			// --- AUTHORIZATION
 			services.AddAuthorization(options =>
 			{
@@ -90,6 +96,8 @@ namespace C8c.Gallery.LocalApi.Service
 						.RequireAuthenticatedUser()
 						.RequireClaim("scope", "gallery:token");
 				});
+
+				options.AddPolicy("BasicAuthentication", new AuthorizationPolicyBuilder("BasicAuthentication").RequireAuthenticatedUser().Build());
 			});
 
 			// --- SWAGGER ---

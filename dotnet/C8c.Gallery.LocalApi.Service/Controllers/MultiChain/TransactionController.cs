@@ -49,7 +49,7 @@ namespace C8c.Gallery.LocalApi.Service.Controllers.MultiChain
 		/// <param name="transaction"></param>
 		/// <returns></returns>
 		[HttpPost()]
-		[AllowAnonymous]
+		[BasicAuthorization]
 		public async Task<ActionResult> Post(WalletNotifyResult transaction)
 		{
 			// Explicitly forbid notifications not from local node
