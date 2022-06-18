@@ -73,7 +73,7 @@ namespace C8c.Gallery.LocalApi.Service
 						};
 				});
 
-			services .AddAuthentication()
+			services.AddAuthentication()
 			   .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication",
 			   options => { });
 
@@ -139,8 +139,10 @@ namespace C8c.Gallery.LocalApi.Service
 			if (HostEnvironment.IsDevelopment() || HostEnvironment.EnvironmentName == "sandbox")
 			{
 				if (HostEnvironment.EnvironmentName == "sandbox")
+				{
 					IdentityModelEventSource.ShowPII = true;
-				app.UseHttpLogging();
+					app.UseHttpLogging();
+				}
 
 				app.UseDeveloperExceptionPage();
 				app.UseSwagger();

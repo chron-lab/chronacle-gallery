@@ -1,9 +1,11 @@
 version: "3.4"
 
 services:
-
     mc-localnode:
         image: chronacle.azurecr.io/mc-localnode-testnet:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.mc-localnode
         container_name: mc-localnode-testnet
         environment:
             - MC_CHAIN_NAME=chronnet
@@ -29,33 +31,8 @@ services:
             - "12039:12029" # Used for explorer
         volumes:
             - mc-localnode-vol:/root/.multichain
-
-    c8c-gallery-local-api:
-        image: chronacle.azurecr.io/c8c-gallery-local-api:latest
-        container_name: c8c-gallery-local-api
-        environment:
-            # ASPNET CONFIG
-            - ASPNETCORE_ENVIRONMENT=Testnet
-            - ASPNETCORE_URLS=http://+:12038
-
-            # GALLERY CONFIG
-            - GALLERY_AllowedOrigins=http://localhost:3000,http://127.0.0.1:3000,https://dev.gallery.chronacle.io
-
-            # MC CONFIG
-            - GALLERY_MultiChainConfiguration__Node__NetworkAddress=172.35.0.99
-            - GALLERY_MultiChainConfiguration__Node__NetworkPort=12021
-            - GALLERY_MultiChainConfiguration__Node__RpcUserName=${MC_RPC_USER} # To be configured by user
-            - GALLERY_MultiChainConfiguration__Node__RpcPassword=${MC_RPC_PASSWORD} # To be configured by user
-
-        ports:
-            - "12038:12038"
-        networks:
-            c8c-network:
-                ipv4_address: 172.35.0.100
-
 volumes:
     mc-localnode-vol:
-
 
 networks:
     c8c-network:
