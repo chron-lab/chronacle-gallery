@@ -7,26 +7,26 @@ services:
         container_name: mc-localnode-testnet
         environment:
             - MC_CHAIN_NAME=chronnet
-            - MC_NETWORK_PORT=12020															# MultiChain API port number
-            - MC_RPC_USER=${MC_RPC_USER}													# Uncomment this to provide own RPC username
-            - MC_RPC_PASSWORD=${MC_RPC_PASSWORD}											# Uncomment this to provide own RPC password
-            - MC_RPC_ALLOWIP=${MC_RPC_ALLOWIP}												# Uncomment only for development only
-            - MC_SEED_IP=20.219.9.14														# ChronAcle Network seednode
-            - MC_EXPLORER_PORT=12029														# MultiChain Exporer port number
-            - BlocksQuiet=true																# Do not log block notifications to console
+            - MC_NETWORK_PORT=12020 # MultiChain API port number
+            - MC_RPC_USER=${MC_RPC_USER} # Uncomment this to provide own RPC username
+            - MC_RPC_PASSWORD=${MC_RPC_PASSWORD} # Uncomment this to provide own RPC password
+            - MC_RPC_ALLOWIP=${MC_RPC_ALLOWIP} # Uncomment only for development only
+            - MC_SEED_IP=20.219.9.14 # ChronAcle Network seednode
+            - MC_EXPLORER_PORT=12029 # MultiChain Exporer port number
+            - BlocksQuiet=true # Do not log block notifications to console
 
             # Configure notification for Local API port (12038)
-            - ReceivingBlockNotify=http://c8c-gallery-local-api:12038/api/v1/block			# Send block notifications to LocalApi
-            - ReceivingHost=http://c8c-gallery-local-api:12038/api/v1/transaction			# Send txn notifications to LocalApi
+            - ReceivingBlockNotify=http://c8c-gallery-local-api:12038/api/v1/block # Send block notifications to LocalApi
+            - ReceivingHost=http://c8c-gallery-local-api:12038/api/v1/transaction # Send txn notifications to LocalApi
 
-            - MC_PTEKEY=${MC_PTEKEY}														# Uncomment to use backup private key
+            - MC_PTEKEY=${MC_PTEKEY} # Uncomment to use backup private key
         networks:
             c8c-network:
                 ipv4_address: 172.35.0.99
         ports:
-            - "12030:12020"																	# Used for network
-            - "12031:12021"																	# Used for rpc
-            - "12039:12029"																	# Used for explorer
+            - "12030:12020" # Used for network
+            - "12031:12021" # Used for rpc
+            - "12039:12029" # Used for explorer
         volumes:
             - mc-localnode-vol:/root/.multichain
 
@@ -44,8 +44,8 @@ services:
             # MC CONFIG
             - GALLERY_MultiChainConfiguration__Node__NetworkAddress=172.35.0.99
             - GALLERY_MultiChainConfiguration__Node__NetworkPort=12021
-            - GALLERY_MultiChainConfiguration__Node__RpcUserName=${MC_RPC_USER}				# To be configured by user
-            - GALLERY_MultiChainConfiguration__Node__RpcPassword=${MC_RPC_PASSWORD}			# To be configured by user
+            - GALLERY_MultiChainConfiguration__Node__RpcUserName=${MC_RPC_USER} # To be configured by user
+            - GALLERY_MultiChainConfiguration__Node__RpcPassword=${MC_RPC_PASSWORD} # To be configured by user
 
         ports:
             - "12038:12038"
@@ -55,6 +55,7 @@ services:
 
 volumes:
     mc-localnode-vol:
+
 
 networks:
     c8c-network:
