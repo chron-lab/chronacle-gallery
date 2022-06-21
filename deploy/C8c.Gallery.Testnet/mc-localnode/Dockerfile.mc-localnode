@@ -1,0 +1,16 @@
+FROM roylai/multichain-base:2.2 AS base
+
+# Used by pkill command
+RUN apt-get install procps -y
+
+# copy wallet notification script
+COPY /scripts/notify.sh /root
+RUN chmod +x /root/notify.sh
+COPY /scripts/block-notify.sh /root
+RUN chmod +x /root/block-notify.sh
+
+# copy init script
+COPY /scripts/mc-localnode.sh /init.sh
+RUN chmod +x /init.sh
+
+ENTRYPOINT [ "bash","/init.sh" ]

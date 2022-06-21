@@ -30,6 +30,7 @@ namespace C8c.Gallery.LocalApi.Service.Controllers.MultiChain
 		}
 
 		[HttpPost()]
+		[BasicAuthorization]
 		public async Task Post(BlockNotifyResult block)
 		{
 			_logger.LogDebug($"McWebSocket: Received blockhash {block.Block}");
