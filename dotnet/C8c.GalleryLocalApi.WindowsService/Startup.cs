@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -121,6 +122,9 @@ namespace C8c.GalleryLocalApi.WindowsService
 				{
 					options.LoggingFields = HttpLoggingFields.All;
 				});
+
+			//for windows service and kestrel config
+			services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
 
 		}
 

@@ -1,18 +1,14 @@
 {
   "profiles": {
-    "C8c.GalleryLocalApi.WindowsService": {
+    "C8c.Gallery.LocalApi.WindowsService": {
       "commandName": "Project",
+      //"launchBrowser": true,
+      "dotnetRunMessages": "true",
       "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:12038;http://localhost:13000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "sandbox"
-      },
-      "applicationUrl": "http://localhost:12038",
-      "dotnetRunMessages": "true"
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-      "publishAllPorts": true
+      }
     }
   }
 }
