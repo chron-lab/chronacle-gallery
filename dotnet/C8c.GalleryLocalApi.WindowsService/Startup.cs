@@ -123,10 +123,10 @@ namespace C8c.GalleryLocalApi.WindowsService
 					options.LoggingFields = HttpLoggingFields.All;
 				});
 
-			//for windows service and kestrel config
-			services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
+            //for windows service and kestrel config
+            services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
 
-		}
+        }
 
 		public void Configure(IApplicationBuilder app)
 		{
