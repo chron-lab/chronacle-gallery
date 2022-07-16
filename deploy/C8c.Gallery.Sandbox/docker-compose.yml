@@ -4,6 +4,9 @@ services:
 
     mc-localnode:
         image: chronacle.azurecr.io/mc-localnode-sandbox:latest
+        build:
+            context: ../C8c.Gallery.Testnet/mc-localnode
+            dockerfile: Dockerfile.mc-localnode
         container_name: mc-localnode-sandbox
         environment:
             - MC_CHAIN_NAME=c8c-sandbox

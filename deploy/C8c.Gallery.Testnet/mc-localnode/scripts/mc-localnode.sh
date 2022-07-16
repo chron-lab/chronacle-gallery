@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ ! -d "/root/.multichain/${MC_CHAIN_NAME}" ]; then
+	echo MULTICHAIN NOT INSTALLED. CREATING MULTICHAIN...
 	# chain is not created
 
 	if [[ -n "${MC_PTEKEY}" ]]; then
@@ -11,7 +12,7 @@ if [ ! -d "/root/.multichain/${MC_CHAIN_NAME}" ]; then
 		multichaind ${MC_CHAIN_NAME}@${MC_SEED_IP}:${MC_NETWORK_PORT} -explorersupport=2 -autosubscribe='assets,streams' -daemon
 	fi
 	# wait until process is started (ie. pid is created)
-	while [[ ! -e /root/.multichain/chronnet/multichain.pid ]]; do sleep 1s; done
+	while [[ ! -e /root/.multichain/${MC_CHAIN_NAME}/multichain.pid ]]; do sleep 1s; done
 
 	# shutdown the process
 	echo RESTARTING MULTICHAIND...
@@ -20,16 +21,18 @@ if [ ! -d "/root/.multichain/${MC_CHAIN_NAME}" ]; then
 	sleep 5
 
 	# wait until process is terminated (ie. pid is removed)
-	while [[ -e /root/.multichain/chronnet/multichain.pid ]]; do sleep 1s; done
+	while [[ -e /root/.multichain/${MC_CHAIN_NAME}/multichain.pid ]]; do sleep 1s; done
 
 fi
 
 # configure api
 cd /root/.multichain/${MC_CHAIN_NAME}
 if [[ -n "${MC_RPC_PASSWORD}" ]]; then
+	echo USE EXISTING RPCPASSWORD
 	sed -i "s/rpcpassword.*$/rpcpassword=${MC_RPC_PASSWORD}/" multichain.conf
 fi
 if [[ -n "${MC_RPC_USER}" ]]; then
+	echo USE EXISTING RPCUSER
 	sed -i "s/rpcuser.*$/rpcuser=${MC_RPC_USER}/" multichain.conf
 fi
 sed -i "/rpcallowip=.*$/d" multichain.conf
